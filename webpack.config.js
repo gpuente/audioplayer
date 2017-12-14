@@ -19,7 +19,7 @@ const config = {
     filename: '[name].[hash].js',
   },
   devtool: 'eval-source-map',
-  devServer: {
+  devServer: { // TODO: move devServer config to new webpack structure
     historyApiFallback: true,
     contentBase: './',
   },
