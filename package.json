@@ -1,7 +1,7 @@
 {
-  "name": "react-boiler",
+  "name": "audioplayer",
   "version": "1.0.0",
-  "description": "react boileplate",
+  "description": "html5 audioplayer",
   "main": "index.js",
   "scripts": {
     "build": "npm run clean && NODE_ENV=production webpack -p",
@@ -13,9 +13,9 @@
   "keywords": [
     "react",
     "frontend",
-    "boilerplate",
-    "webpack",
-    "mhr"
+    "audio",
+    "audioplayer",
+    "music"
   ],
   "author": "Guillermo Puente <guillermo.ps09@gmail.com>",
   "license": "ISC",

@@ -19,6 +19,10 @@ const config = {
     filename: '[name].[hash].js',
   },
   devtool: 'eval-source-map',
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './',
+  },
   module: {
     rules: [
       {
