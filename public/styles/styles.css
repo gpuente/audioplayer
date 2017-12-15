@@ -16,6 +16,10 @@ body {
   background-color: black;
 }
 
+.link {
+  display: block;
+}
+
 .btn {
   cursor: pointer;
 }
