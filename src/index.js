@@ -1,30 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import store from './store';
 
 import App from './components/App';
 import AudioPlayer from './components/AudioPlayer';
-
-import reducers from './reducers';
+import Hello from './components/Hello';
+import Bye from './components/Bye';
 
 import '../public/styles/styles.css';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
-const store = createStoreWithMiddleware(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() //eslint-disable-line
-);
-
-// TODO: export store to an external file to use in workers: https://stackoverflow.com/questions/38460949/what-is-the-best-way-to-access-redux-store-outside-a-react-component
-console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
         <Route path="/play" component={AudioPlayer} />
+        <Route path="/hello" component={Hello} />
+        <Route path="/bye" component={Bye} />
         <Route path="/" component={App} />
       </Switch>
     </BrowserRouter>
