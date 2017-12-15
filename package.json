@@ -10,7 +10,7 @@
     "server": "NODE_ENV=development webpack-dev-server --inline --hot --config config/webpack.config.js",
     "start": "NODE_ENV=development webpack-dev-server --inline --hot --config config/webpack.config.js",
     "server:production": "npm run build && http-server-spa dist",
-    "deploy": "npm run build && surge --domain rspa.surge.sh -p dist",
+    "deploy": "npm run build && surge --domain pl4y.surge.sh -p dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
