@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { fetchPlaylist } from '../../actions';
 
 import Navbar from './Navbar';
 import CoverFlow from './CoverFlow';
@@ -10,6 +13,10 @@ class AudioPlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  componentDidMount() {
+    this.props.fetchPlaylist();
   }
 
   render() {
@@ -27,4 +34,4 @@ class AudioPlayer extends Component {
   }
 }
 
-export default AudioPlayer;
+export default connect(null, { fetchPlaylist })(AudioPlayer);

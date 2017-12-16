@@ -140,6 +140,10 @@ i {
   margin: 5px;
 }
 
+.controls .control:active {
+  transform: scale(0.9, 0.9);
+}
+
 .controls .control i {
   padding: 5px;
 }
@@ -160,6 +164,6 @@ i {
 }
 
 .cbtn:active {
-  border-color: #FCAC0C;
-  color: #FCAC0C;
+  border-color: #9e9e9e;
+  color: #9e9e9e;
 }
