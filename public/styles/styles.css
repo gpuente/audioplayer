@@ -1,59 +1,158 @@
-body:before {
-  content: '';
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background-image: url('http://www.rockshop.ro/images/product/362-alice-in-chains---jar-of-flies---frontjpg.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-position: 100% 100%;
-  background-size: cover;
-  filter: blur(15px);
-  z-index: -9;
+html {
+  height: 100%;
 }
 
 body {
-  background-color: black;
-}
-
-.link {
-  display: block;
-}
-
-.btn {
-  cursor: pointer;
-}
-
-.audio-player {
-  position: relative;
-}
-
-/******************** styles play-bar ********************/
-
-.play-bar {
-  position: fixed;
-  height: 70px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0,0,0,0.5);
-  text-align: center;
-}
-
-.play-bar-btn {
-  background-color: rgba(0, 0, 0, 0);
   color: #fff;
-  text-align: center;
-  font-size: 25px;
-  cursor: pointer;
-  border: none;
+  margin: 0;
+  background: #00649F;
+  height: 100%;
+  font-family: 'Source Sans Pro', sans-serif;
+  box-sizing: border-box;
 }
 
-.play-btn {
-  height: 60px;
-  width: 60px;
+#app {
+  height: 100%;
+}
+
+i {
+  padding: 0 5px;
+}
+
+.layer {
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+}
+
+.playerContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  padding: 10px 20px;
+}
+
+.nav {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 20px;
+}
+
+
+.nav .menu {
+  display: flex;
+  align-items: center;
+  flex: 1 1 40px;
+  font-size: 1.6em;
+}
+
+.nav .title {
+  flex: 8 1 auto;
+  text-align: center;
+}
+
+.title .origin {
+  font-weight: 200;
+}
+
+.nav .playlist {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1 1 40px;
+}
+
+.coverflow {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.coverflow img {
+  width: 90%;
+  max-width: 400px;
+}
+
+.songInfo {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 10px;
+}
+
+.songInfo .save {
+  flex: 1 1 40px;
+  display: flex;
+  align-items: center;
+}
+
+.songInfo .info {
+  flex: 8 1 auto;
+  text-align: center;
+}
+
+.songInfo .artist {
+  font-weight: 200;
+}
+
+.songInfo .more {
+  flex: 1 1 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.timeControls {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 15px;
+}
+
+.timeControls .start {
+  flex: 1 1 auto;
+}
+
+.timeControls .scroll {
+  flex: 8 1 auto;
+  text-align: center;
+}
+
+.timeControls .scroll input {
+  width: 99%;
+}
+
+.timeControls .end {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.controls {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.controls .control {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  padding: 10px;
+  margin: 2px;
+}
+
+.controls .control i {
+  padding: 5px;
+}
+
+.controls .play {
+  border: 1px solid #fff;
   border-radius: 50%;
-  margin: 4px;
-  padding-right: 5px;
-  border: 1px solid white;
+  width: 62px;
+  height: 62px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+.controls .play i {
+  margin-left: 4px;
 }

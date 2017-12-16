@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-import PlayBar from './PlayBar';
+import Navbar from './Navbar';
+import CoverFlow from './CoverFlow';
+import SongInfo from './SongInfo';
+import TimeControls from './TimeControls';
+import Controls from './Controls';
 
 class AudioPlayer extends Component {
   constructor(props) {
@@ -10,8 +14,14 @@ class AudioPlayer extends Component {
 
   render() {
     return (
-      <div className="audio-player">
-        <PlayBar />
+      <div className="layer">
+        <div className="playerContainer">
+          <Navbar />
+          <CoverFlow />
+          <SongInfo />
+          <TimeControls />
+          <Controls />
+        </div>
       </div>
     );
   }
