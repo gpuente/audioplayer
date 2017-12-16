@@ -9,19 +9,19 @@ class Controls extends Component {
   render() {
     return (
       <div className="controls">
-        <div className="control random">
+        <div className="control cbtn random">
           <i className="fa fa-random" aria-hidden="true" />
         </div>
-        <div className="control previous">
+        <div className="control cbtn previous">
           <i className="fa fa-step-backward" aria-hidden="true" />
         </div>
-        <div className="control play">
+        <div className="control cbtn play">
           <i className="fa fa-play" aria-hidden="true" />
         </div>
-        <div className="control next">
+        <div className="control cbtn next">
           <i className="fa fa-step-forward" aria-hidden="true" />
         </div>
-        <div className="control repeat">
+        <div className="control cbtn repeat">
           <i className="fa fa-repeat" aria-hidden="true" />
         </div>
       </div>

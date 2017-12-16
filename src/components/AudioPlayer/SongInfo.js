@@ -9,14 +9,14 @@ class SongInfo extends Component {
   render() {
     return (
       <div className="songInfo">
-        <div className="save">
+        <div className="save cbtn">
           <i className="fa fa-check" aria-hidden="true" />
         </div>
         <div className="info">
           <div className="songName">Georgy Porgy</div>
           <div className="artist">Toto</div>
         </div>
-        <div className="more">
+        <div className="more cbtn">
           <i className="fa fa-ellipsis-v" aria-hidden="true" />
         </div>
       </div>
