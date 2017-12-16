@@ -6,8 +6,8 @@ const parts = require('./webpack.parts');
 const developmentConfig = merge([
   parts.devTools(),
   parts.devServer({
-    host: process.env.PORT,
-    port: process.env.HOST,
+    host: process.env.HOST || '0.0.0.0',
+    port: process.env.PORT,
   }),
   parts.babelLoader(),
   parts.cssLoader(),

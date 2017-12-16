@@ -1,3 +1,5 @@
+import { PLAY, PAUSE } from '../actions';
+
 const defaultState = {
   status: 'paused',
   random: false,
@@ -5,5 +7,20 @@ const defaultState = {
 };
 
 export default (state = defaultState, action) => {
-  return state;
+  switch (action.type) {
+    case PLAY:
+      return {
+        ...state,
+        status: 'playing',
+      };
+
+    case PAUSE:
+      return {
+        ...state,
+        status: 'paused',
+      };
+
+    default:
+      return state;
+  }
 };
