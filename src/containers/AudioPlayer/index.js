@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 import { fetchPlaylist } from '../../actions';
 
@@ -23,6 +24,9 @@ class AudioPlayer extends Component {
   render() {
     return (
       <div className="backgroud" style={{ background: this.props.color }}>
+        <Helmet>
+          <meta name="theme-color" content={this.props.color} />
+        </Helmet>
         <div className="layer">
           <div className="playerContainer">
             <Navbar />
