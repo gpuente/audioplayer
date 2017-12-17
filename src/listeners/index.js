@@ -18,13 +18,15 @@ const onPauseSong = (diff, state) => {
 
 const onChangeSong = (diff, state) => {
   const songI = _.get(diff, 'after.playlist.index');
-  if (!songI) return;
+
+  if (state.audio.index < 0) return;
+  if (typeof songI !== 'number') return;
 
   const { workers, index } = state.audio;
-  const { tracks } = state.playlist;
+  const { currentSong } = state.playlist;
   const { status } = state.player;
 
-  workers[index].src = tracks[songI].url;
+  workers[index].src = currentSong.url;
   if (status === 'playing') workers[index].play();
 };
 

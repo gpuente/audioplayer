@@ -5,6 +5,7 @@ export default (state = {}, action) => {
     case FETCH_PLAYLIST:
       return {
         index: 0,
+        currentSong: { ...action.payload[0] },
         length: action.payload.length,
         tracks: [...action.payload],
       };
@@ -12,6 +13,7 @@ export default (state = {}, action) => {
     case CHANGE_SONG:
       return {
         ...state,
+        currentSong: { ...state.tracks[action.payload] },
         index: action.payload,
       };
 

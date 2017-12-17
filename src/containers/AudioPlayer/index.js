@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { fetchPlaylist } from '../../actions';
@@ -21,17 +22,37 @@ class AudioPlayer extends Component {
 
   render() {
     return (
-      <div className="layer">
-        <div className="playerContainer">
-          <Navbar />
-          <CoverFlow />
-          <SongInfo />
-          <TimeControls />
-          <Controls />
+      <div className="backgroud" style={{ background: this.props.color }}>
+        <div className="layer">
+          <div className="playerContainer">
+            <Navbar />
+            <CoverFlow />
+            <SongInfo />
+            <TimeControls />
+            <Controls />
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default connect(null, { fetchPlaylist })(AudioPlayer);
+
+AudioPlayer.propTypes = {
+  color: PropTypes.string,
+};
+
+AudioPlayer.defaultProps = {
+  color: '#00649F',
+};
+
+
+function mapStateToProps(state, ownProps) {
+  if (!state.playlist.currentSong) return ownProps;
+
+  return {
+    color: state.playlist.currentSong.color,
+  };
+}
+
+export default connect(mapStateToProps, { fetchPlaylist })(AudioPlayer);

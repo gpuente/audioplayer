@@ -9,6 +9,7 @@ const tracks = [
     url: 'http://mediastream.guillermopuente.com/05c9050c-8e57-466e-bc51-9115519d3d6b.mp3',
     encode: 'mp3',
     cover: 'https://d3fa68hw0m2vcc.cloudfront.net/b7f/89624383.jpeg',
+    color: '#573e4a',
     length: '04:14',
   },
   {
@@ -21,6 +22,7 @@ const tracks = [
     url: 'http://mediastream.guillermopuente.com/ae627004-5a26-481d-a30b-f021cda764dd.mp3',
     encode: 'mp3',
     cover: 'https://media.pitchfork.com/photos/5929a2a45e6ef9596932046d/1:1/w_600/7c04bbb3.jpg',
+    color: '#c4c4c5',
     length: '04:26',
   },
   {
@@ -33,6 +35,7 @@ const tracks = [
     url: 'http://mediastream.guillermopuente.com/e85b1c5a-800e-45da-b909-1fe028827a95.mp3',
     encode: 'mp3',
     cover: 'https://is5-ssl.mzstatic.com/image/thumb/Music/f9/25/f0/mzi.pjfjrguk.jpg/600x600bf.jpg',
+    color: '#966c3e',
     length: '04:03',
   },
   {
@@ -45,6 +48,7 @@ const tracks = [
     url: 'http://mediastream.guillermopuente.com/ef065c32-47f3-4509-869c-42c1ab6df041.mp3',
     encode: 'mp3',
     cover: 'https://images-na.ssl-images-amazon.com/images/I/71Fqs7zZBBL._SL1300_.jpg',
+    color: '#e15922',
     length: '04:03',
   },
   {
@@ -57,6 +61,7 @@ const tracks = [
     url: 'http://mediastream.guillermopuente.com/17518b06-1e9f-4ee4-bd61-6b152a032be9.mp3',
     encode: 'mp3',
     cover: 'https://images-na.ssl-images-amazon.com/images/I/71Fqs7zZBBL._SL1300_.jpg',
+    color: '#e15922',
     length: '03:40',
   },
   {
@@ -69,6 +74,7 @@ const tracks = [
     url: 'http://mediastream.guillermopuente.com/1b21da17-ef00-44be-854e-4e95c0e122d0.mp3',
     encode: 'mp3',
     cover: 'https://images-na.ssl-images-amazon.com/images/I/51iiqst9hzL.jpg',
+    color: '#e99037',
     length: '04:33',
   },
   {
@@ -81,6 +87,7 @@ const tracks = [
     url: 'http://mediastream.guillermopuente.com/a13739ac-812e-4029-8a70-25b474c42242.mp3',
     encode: 'mp3',
     cover: 'http://www.progarchives.com/progressive_rock_discography_covers/1199/cover_91792652016_r.jpg',
+    color: '#2b303d',
     length: '06:29',
   },
 ];

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class Navbar extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class Navbar extends Component {
         </div>
         <div className="title">
           <div className="origin">Playing from your library</div>
-          <div className="artist">Toto</div>
+          <div className="artist">{ this.props.artist }</div>
         </div>
         <div className="playlist cbtn">
           <i className="fa fa-bars" aria-hidden="true" />
@@ -24,4 +26,21 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+
+Navbar.propTypes = {
+  artist: PropTypes.string,
+};
+
+Navbar.defaultProps = {
+  artist: 'none',
+};
+
+function mapStateToProps(state, ownProps) {
+  if (!state.playlist.currentSong) return ownProps;
+
+  return {
+    artist: state.playlist.currentSong.artist,
+  };
+}
+
+export default connect(mapStateToProps)(Navbar);
