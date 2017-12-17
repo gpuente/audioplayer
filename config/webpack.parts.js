@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
@@ -19,7 +20,11 @@ exports.babelLoader = () => ({
     rules: [{
       use: 'babel-loader',
       test: /\.jsx?$/,
-      exclude: /node_modules/,
+      include: [
+        path.join(__dirname, '../src'),
+        path.join(__dirname, '../node_modules/redux-subscriptions'),
+        path.join(__dirname, '../node_modules/object-difference'),
+      ],
     }],
   },
 });
