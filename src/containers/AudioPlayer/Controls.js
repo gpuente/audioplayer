@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { play, pause } from '../../actions';
+import { getValidIndex } from '../../utils/helpers';
+import { play, pause, changeSong } from '../../actions';
 
 class Controls extends Component {
   constructor(props) {
@@ -10,7 +12,7 @@ class Controls extends Component {
   }
 
   playSong = () => {
-    const { index, workers } = this.props.audio;
+    const { index } = this.props.audio;
 
     if (index < 0) {
       // TODO: handle no song loaded
@@ -18,11 +20,10 @@ class Controls extends Component {
     }
 
     this.props.play();
-    workers[index].play();
   }
 
   pauseSong = () => {
-    const { index, workers } = this.props.audio;
+    const { index } = this.props.audio;
 
     if (index < 0) {
       // TODO: handle no song loaded
@@ -30,7 +31,6 @@ class Controls extends Component {
     }
 
     this.props.pause();
-    workers[index].pause();
   }
 
   playOrPause = () => {
@@ -38,6 +38,26 @@ class Controls extends Component {
 
     if (status === 'playing') return this.pauseSong();
     if (status === 'paused') return this.playSong();
+  }
+
+  nextSong = () => {
+    const {
+      currentSongIndex: index,
+      playlistLength: length,
+    } = this.props;
+
+    const i = getValidIndex(index, 1, length);
+    this.props.changeSong(i);
+  }
+
+  prevSong = () => {
+    const {
+      currentSongIndex: index,
+      playlistLength: length,
+    } = this.props;
+
+    const i = getValidIndex(index, -1, length);
+    this.props.changeSong(i);
   }
 
   render() {
@@ -49,13 +69,13 @@ class Controls extends Component {
         <div className="control cbtn random">
           <i className="fa fa-random" aria-hidden="true" />
         </div>
-        <div className="control cbtn previous">
+        <div className="control cbtn previous" onClick={this.prevSong}>
           <i className="fa fa-step-backward" aria-hidden="true" />
         </div>
         <div className="control cbtn play" onClick={this.playOrPause}>
           <i className={icon} aria-hidden="true" />
         </div>
-        <div className="control cbtn next">
+        <div className="control cbtn next" onClick={this.nextSong}>
           <i className="fa fa-step-forward" aria-hidden="true" />
         </div>
         <div className="control cbtn repeat">
@@ -66,11 +86,24 @@ class Controls extends Component {
   }
 }
 
+
+Controls.propTypes = {
+  play: PropTypes.func,
+  pause: PropTypes.func,
+  changeSong: PropTypes.func,
+  audio: PropTypes.object,
+  status: PropTypes.string,
+  currentSongIndex: PropTypes.number,
+  playlistLength: PropTypes.number,
+};
+
 function mapStateToProps(state) {
   return {
     audio: state.audio,
     status: state.player.status,
+    currentSongIndex: state.playlist.index,
+    playlistLength: state.playlist.length,
   };
 }
 
-export default connect(mapStateToProps, { play, pause })(Controls);
+export default connect(mapStateToProps, { play, pause, changeSong })(Controls);

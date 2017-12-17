@@ -4,6 +4,7 @@ export const FETCH_PLAYLIST = 'FETCH_PLAYLIST';
 export const LOAD_WORKER = 'LOAD_WORKER';
 export const PLAY = 'PLAY';
 export const PAUSE = 'PAUSE';
+export const CHANGE_SONG = 'CHANGE_SONG';
 
 function loadWorker(index, url) {
   return {
@@ -37,5 +38,18 @@ export function pause() {
   return {
     type: PAUSE,
     payload: 'paused',
+  };
+}
+
+export function nextSong() {
+  return {
+    type: nextSong,
+  };
+}
+
+export function changeSong(newIndex) {
+  return {
+    type: CHANGE_SONG,
+    payload: newIndex,
   };
 }
