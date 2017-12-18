@@ -56,3 +56,11 @@ exports.html200 = () => ({
     }),
   ],
 });
+
+exports.output = (placeholder = 'hash') => ({
+  output: {
+    path: path.join(__dirname, '../dist'),
+    filename: `[name].[${placeholder}].js`,
+    publicPath: '/',
+  },
+});

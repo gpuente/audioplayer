@@ -16,11 +16,6 @@ module.exports = merge([
       bundle: './src/index.js',
       vendor: VENDOR_LIBS,
     },
-    output: {
-      path: path.join(__dirname, '../dist'),
-      filename: '[name].[hash].js',
-      publicPath: '/',
-    },
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
         names: ['vendor', 'manifest'],
