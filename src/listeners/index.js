@@ -27,6 +27,7 @@ const onChangeSong = (diff, state) => {
   const { status } = state.player;
 
   workers[index].src = currentSong.url;
+  workers[index].load();
   if (status === 'playing') workers[index].play();
 };
 

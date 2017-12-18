@@ -8,16 +8,22 @@ export default (state = defaultState, action) => {
   const { payload = {} } = action;
 
   switch (action.type) {
-    case LOAD_WORKER:
+    case LOAD_WORKER: {
+      const audio = new Audio(payload.url); //eslint-disable-line
+      audio.preload = 'auto';
+      audio.load();
+
       return {
         index: payload.index,
         actions: {},
         workers: [
-          new Audio(payload.url), //eslint-disable-line
+          audio,
         ],
       };
+    }
 
-    default:
+    default: {
       return state;
+    }
   }
 };
