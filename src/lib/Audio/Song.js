@@ -29,7 +29,16 @@ export default function song() {
   audio.onended = () => {
     const state = store.getState();
     const { length, index } = state.playlist;
-    const nextIndex = getValidIndex(index, 1, length);
+    const { repeat } = state.player;
+    const repeatFromStart = repeat === 'playlist';
+    const nextIndex = getValidIndex(index, 1, length, repeatFromStart);
+
+    if (repeat === 'song') {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.play();
+      return;
+    }
 
     if (nextIndex === index) {
       dispatch(pause());

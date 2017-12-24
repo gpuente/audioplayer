@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getValidIndex } from '../../utils/helpers';
-import { play, pause, changeSong } from '../../actions';
+import { play, pause, changeSong, changeRepeatState } from '../../actions';
 
 class Controls extends Component {
   constructor(props) {
@@ -46,9 +46,21 @@ class Controls extends Component {
     this.props.changeSong(i);
   }
 
+  repeat = () => {
+    const { repeat } = this.props;
+    let nextState = 'none';
+
+    if (repeat === 'none') nextState = 'playlist';
+    if (repeat === 'playlist') nextState = 'song';
+
+    this.props.changeRepeatState(nextState);
+  }
+
   render() {
-    const { status } = this.props;
+    const { status, repeat } = this.props;
     const icon = status === 'paused' ? 'fa fa-play' : 'fa fa-pause';
+    const repeatClass = `control cbtn repeat ${repeat !== 'none' ? 'cbtnActive' : ''}`;
+    const repeatOneClass = `repeatOne ${repeat !== 'song' ? 'hideElement' : ''}`;
 
     return (
       <div className="controls">
@@ -64,8 +76,9 @@ class Controls extends Component {
         <div className="control cbtn next" onClick={this.nextSong}>
           <i className="fa fa-step-forward" aria-hidden="true" />
         </div>
-        <div className="control cbtn repeat">
+        <div className={repeatClass} onClick={this.repeat}>
           <i className="fa fa-repeat" aria-hidden="true" />
+          <div className={repeatOneClass}>1</div>
         </div>
       </div>
     );
@@ -77,8 +90,10 @@ Controls.propTypes = {
   play: PropTypes.func,
   pause: PropTypes.func,
   changeSong: PropTypes.func,
+  changeRepeatState: PropTypes.func,
   audio: PropTypes.object,
   status: PropTypes.string,
+  repeat: PropTypes.string,
   currentSongIndex: PropTypes.number,
   playlistLength: PropTypes.number,
 };
@@ -87,9 +102,17 @@ function mapStateToProps(state) {
   return {
     audio: state.audio,
     status: state.player.status,
+    repeat: state.player.repeat,
     currentSongIndex: state.playlist.index,
     playlistLength: state.playlist.length,
   };
 }
 
-export default connect(mapStateToProps, { play, pause, changeSong })(Controls);
+const actionCreators = {
+  play,
+  pause,
+  changeSong,
+  changeRepeatState,
+};
+
+export default connect(mapStateToProps, actionCreators)(Controls);
