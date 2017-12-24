@@ -1,5 +1,6 @@
-import { updateTimeAudio, updateCurrentTimeAudio } from '../../actions';
-import { dispatch } from '../../store';
+import { getValidIndex } from '../../utils/helpers';
+import { updateTimeAudio, updateCurrentTimeAudio, changeSong } from '../../actions';
+import store, { dispatch } from '../../store';
 
 export default function song() {
   const audio = new Audio(); //eslint-disable-line
@@ -25,8 +26,15 @@ export default function song() {
     }
   };
 
+  audio.onended = () => {
+    const state = store.getState();
+    const { length, index } = state.playlist;
+    const nextIndex = getValidIndex(index, 1, length);
+
+    dispatch(changeSong(nextIndex));
+  };
+
   audio.onpause = () => console.log('onpause');
-  // audio.ontimeupdate = () => console.log(audio.currentTime);
 
   return audio;
 }
