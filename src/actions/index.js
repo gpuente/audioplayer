@@ -7,6 +7,7 @@ export const CHANGE_SONG = 'CHANGE_SONG';
 export const UPDATE_TIME_AUDIO = 'UPDATE_TIME_AUDIO';
 export const UPDATE_CURRENT_TIME_AUDIO = 'UPDATE_CURRENT_TIME_AUDIO';
 export const SEEK_AUDIO = 'SEEK_AUDIO';
+export const CHANGE_REPEAT_STATE = 'CHANGE_REPEAT_STATE';
 
 
 function getPlaylist() {
@@ -77,5 +78,12 @@ export function seekAudio(sec) {
   return {
     type: SEEK_AUDIO,
     payload: sec,
+  };
+}
+
+export function changeRepeatState(nextState) {
+  return {
+    type: CHANGE_REPEAT_STATE,
+    payload: nextState,
   };
 }

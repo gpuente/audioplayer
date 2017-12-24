@@ -1,4 +1,4 @@
-import { PLAY, PAUSE } from '../actions';
+import { PLAY, PAUSE, CHANGE_REPEAT_STATE } from '../actions';
 
 const defaultState = {
   status: 'paused',
@@ -18,6 +18,12 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         status: 'paused',
+      };
+
+    case CHANGE_REPEAT_STATE:
+      return {
+        ...state,
+        repeat: action.payload,
       };
 
     default:
