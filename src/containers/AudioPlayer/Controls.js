@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getValidIndex } from '../../utils/helpers';
-import { play, pause, changeSong, changeRepeatState } from '../../actions';
+import {
+  play,
+  pause,
+  changeSong,
+  changeRepeatState,
+  changeRandom,
+} from '../../actions';
 
 class Controls extends Component {
   constructor(props) {
@@ -56,15 +62,21 @@ class Controls extends Component {
     this.props.changeRepeatState(nextState);
   }
 
+  random = () => {
+    const { random } = this.props;
+    this.props.changeRandom(!random);
+  }
+
   render() {
-    const { status, repeat } = this.props;
+    const { status, repeat, random } = this.props;
     const icon = status === 'paused' ? 'fa fa-play' : 'fa fa-pause';
     const repeatClass = `control cbtn repeat ${repeat !== 'none' ? 'cbtnActive' : ''}`;
     const repeatOneClass = `repeatOne ${repeat !== 'song' ? 'hideElement' : ''}`;
+    const randomClass = `control cbtn random ${random ? 'cbtnActive' : ''}`;
 
     return (
       <div className="controls">
-        <div className="control cbtn random">
+        <div className={randomClass} onClick={this.random}>
           <i className="fa fa-random" aria-hidden="true" />
         </div>
         <div className="control cbtn previous" onClick={this.prevSong}>
@@ -90,10 +102,12 @@ Controls.propTypes = {
   play: PropTypes.func,
   pause: PropTypes.func,
   changeSong: PropTypes.func,
+  changeRandom: PropTypes.func,
   changeRepeatState: PropTypes.func,
   audio: PropTypes.object,
   status: PropTypes.string,
   repeat: PropTypes.string,
+  random: PropTypes.bool,
   currentSongIndex: PropTypes.number,
   playlistLength: PropTypes.number,
 };
@@ -103,6 +117,7 @@ function mapStateToProps(state) {
     audio: state.audio,
     status: state.player.status,
     repeat: state.player.repeat,
+    random: state.player.random,
     currentSongIndex: state.playlist.index,
     playlistLength: state.playlist.length,
   };
@@ -112,6 +127,7 @@ const actionCreators = {
   play,
   pause,
   changeSong,
+  changeRandom,
   changeRepeatState,
 };
 
