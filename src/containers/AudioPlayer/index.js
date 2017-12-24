@@ -26,6 +26,7 @@ class AudioPlayer extends Component {
       <div className="backgroud" style={{ background: this.props.color }}>
         <Helmet>
           <meta name="theme-color" content={this.props.color} />
+          <title>{`${this.props.songTitle} | ${this.props.artist}`}</title>
         </Helmet>
         <div className="layer">
           <div className="playerContainer">
@@ -56,6 +57,8 @@ function mapStateToProps(state, ownProps) {
 
   return {
     color: state.playlist.currentSong.color,
+    songTitle: state.playlist.currentSong.song,
+    artist: state.playlist.currentSong.artist,
   };
 }
 
