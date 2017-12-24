@@ -8,6 +8,7 @@ export const UPDATE_TIME_AUDIO = 'UPDATE_TIME_AUDIO';
 export const UPDATE_CURRENT_TIME_AUDIO = 'UPDATE_CURRENT_TIME_AUDIO';
 export const SEEK_AUDIO = 'SEEK_AUDIO';
 export const CHANGE_REPEAT_STATE = 'CHANGE_REPEAT_STATE';
+export const CHANGE_RANDOM = 'CHANGE_RANDOM';
 
 
 function getPlaylist() {
@@ -85,5 +86,12 @@ export function changeRepeatState(nextState) {
   return {
     type: CHANGE_REPEAT_STATE,
     payload: nextState,
+  };
+}
+
+export function changeRandom(random) {
+  return {
+    type: CHANGE_RANDOM,
+    payload: random,
   };
 }

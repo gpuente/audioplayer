@@ -1,6 +1,11 @@
 import { getValidIndex } from '../../utils/helpers';
-import { updateTimeAudio, updateCurrentTimeAudio, changeSong, pause } from '../../actions';
 import store, { dispatch } from '../../store';
+import {
+  updateTimeAudio,
+  updateCurrentTimeAudio,
+  changeSong,
+  pause,
+} from '../../actions';
 
 export default function song() {
   const audio = new Audio(); //eslint-disable-line
@@ -29,9 +34,9 @@ export default function song() {
   audio.onended = () => {
     const state = store.getState();
     const { length, index } = state.playlist;
-    const { repeat } = state.player;
+    const { repeat, random } = state.player;
     const repeatFromStart = repeat === 'playlist';
-    const nextIndex = getValidIndex(index, 1, length, repeatFromStart);
+    const nextIndex = getValidIndex(index, 1, length, repeatFromStart, random);
 
     if (repeat === 'song') {
       audio.pause();
@@ -40,7 +45,7 @@ export default function song() {
       return;
     }
 
-    if (nextIndex === index) {
+    if (nextIndex === index && !repeat) {
       dispatch(pause());
     } else {
       dispatch(changeSong(nextIndex));
