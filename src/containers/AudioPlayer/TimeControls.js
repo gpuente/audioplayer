@@ -12,43 +12,24 @@ class TimeControls extends Component {
     super(props);
     this.state = {
       updateTimeInput: true,
-      seeking: false,
-      seekTo: 0,
     };
   }
 
   componentDidUpdate() {
     const { currentTime } = this.props;
-    const { updateTimeInput, seeking, seekTo } = this.state;
+    const { updateTimeInput } = this.state;
 
-    if (seeking) {
-      if (currentTime !== seekTo) return;
-
-      this.setState({ seeking: false }); //TODO: check this line
-    }
 
     if (updateTimeInput) this.timeRange.value = currentTime;
   }
 
-  handleMouseDown = () => {
-    this.setState({
-      updateTimeInput: false,
-      seeking: true,
-    });
-  }
+  handleSeek = (e) => {
+    this.setState({ updateTimeInput: false });
 
-  handleMouseUp = (e) => {
     const sec = parseInt(e.target.value, 10);
 
     this.props.seekAudio(sec);
-    this.setState({
-      updateTimeInput: true,
-      seekTo: sec,
-    });
-  }
-
-  handleSeek = (e) => {
-    console.log(e.target.value); //TODO: delete this line
+    this.setState({ updateTimeInput: true });
   }
 
   render() {
@@ -66,8 +47,6 @@ class TimeControls extends Component {
             min="0"
             max={endTime}
             defaultValue={currentTime}
-            onMouseDown={this.handleMouseDown}
-            onMouseUp={this.handleMouseUp}
             onInput={this.handleSeek}
           />
         </div>

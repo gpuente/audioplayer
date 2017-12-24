@@ -33,7 +33,9 @@ const onSeekSong = (diff) => {
   const seekTo = _.get(diff, 'after.audio.seekTo');
   if (!seekTo || seekTo < 0) return;
 
+  Song.pause();
   Song.currentTime = seekTo;
+  Song.play();
 };
 
 
