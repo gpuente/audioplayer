@@ -12,24 +12,10 @@ class Controls extends Component {
   }
 
   playSong = () => {
-    const { index } = this.props.audio;
-
-    if (index < 0) {
-      // TODO: handle no song loaded
-      return;
-    }
-
     this.props.play();
   }
 
   pauseSong = () => {
-    const { index } = this.props.audio;
-
-    if (index < 0) {
-      // TODO: handle no song loaded
-      return;
-    }
-
     this.props.pause();
   }
 

@@ -1,17 +1,13 @@
 import mockPlaylist from '../mocks/playlist';
 
 export const FETCH_PLAYLIST = 'FETCH_PLAYLIST';
-export const LOAD_WORKER = 'LOAD_WORKER';
 export const PLAY = 'PLAY';
 export const PAUSE = 'PAUSE';
 export const CHANGE_SONG = 'CHANGE_SONG';
+export const UPDATE_TIME_AUDIO = 'UPDATE_TIME_AUDIO';
+export const UPDATE_CURRENT_TIME_AUDIO = 'UPDATE_CURRENT_TIME_AUDIO';
+export const SEEK_AUDIO = 'SEEK_AUDIO';
 
-function loadWorker(index, url) {
-  return {
-    type: LOAD_WORKER,
-    payload: { index, url },
-  };
-}
 
 function getPlaylist() {
   return {
@@ -23,7 +19,6 @@ function getPlaylist() {
 export function fetchPlaylist() {
   return (dispatch) => {
     dispatch(getPlaylist());
-    dispatch(loadWorker(0, mockPlaylist[0].url));
   };
 }
 
@@ -47,9 +42,40 @@ export function nextSong() {
   };
 }
 
-export function changeSong(newIndex) {
+export function changeSongIndex(newIndex) {
   return {
     type: CHANGE_SONG,
     payload: newIndex,
+  };
+}
+
+export function updateTimeAudio(start, end) {
+  return {
+    type: UPDATE_TIME_AUDIO,
+    payload: {
+      currentTime: start,
+      endTime: end,
+    },
+  };
+}
+
+export function updateCurrentTimeAudio(currentTime) {
+  return {
+    type: UPDATE_CURRENT_TIME_AUDIO,
+    payload: currentTime,
+  };
+}
+
+export function changeSong(newIndex) {
+  return (dispatch) => {
+    dispatch(changeSongIndex(newIndex));
+    dispatch(updateTimeAudio(0, 0));
+  };
+}
+
+export function seekAudio(sec) {
+  return {
+    type: SEEK_AUDIO,
+    payload: sec,
   };
 }

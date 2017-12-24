@@ -23,4 +23,5 @@ store.subscribe(setupSubscriptions(store)(callListeners));
 // TODO: delete this line for production!
 window.store = store; //eslint-disable-line
 
+export const { dispatch } = store;
 export default store;

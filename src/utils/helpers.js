@@ -14,3 +14,8 @@ export function getValidIndex(currentIndex, fix, length, start = false) {
 
   return result;
 }
+
+
+export function translateTime(secs) {
+  return secs;
+}

@@ -1,29 +1,36 @@
-import { LOAD_WORKER } from '../actions';
+import {
+  UPDATE_TIME_AUDIO,
+  UPDATE_CURRENT_TIME_AUDIO,
+  SEEK_AUDIO,
+} from '../actions';
 
 const defaultState = {
-  index: -1,
+  currentTime: 0,
+  endTime: 0,
+  seekTo: -1,
 };
 
 export default (state = defaultState, action) => {
-  const { payload = {} } = action;
-
   switch (action.type) {
-    case LOAD_WORKER: {
-      const audio = new Audio(payload.url); //eslint-disable-line
-      audio.preload = 'auto';
-      audio.load();
-
+    case UPDATE_TIME_AUDIO:
       return {
-        index: payload.index,
-        actions: {},
-        workers: [
-          audio,
-        ],
+        ...state,
+        ...action.payload,
       };
-    }
 
-    default: {
+    case UPDATE_CURRENT_TIME_AUDIO:
+      return {
+        ...state,
+        currentTime: action.payload,
+      };
+
+    case SEEK_AUDIO:
+      return {
+        ...state,
+        seekTo: action.payload,
+      };
+
+    default:
       return state;
-    }
   }
 };

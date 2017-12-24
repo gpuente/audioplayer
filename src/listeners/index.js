@@ -1,38 +1,45 @@
 import _ from 'lodash';
+import Song from '../lib/Audio';
 
-const onPlaySong = (diff, state) => {
+const onPlaySong = (diff) => {
   const status = _.get(diff, 'after.player.status');
   if (status !== 'playing') return;
 
-  const { workers, index } = state.audio;
-  workers[index].play();
+  Song.play();
 };
 
-const onPauseSong = (diff, state) => {
+const onPauseSong = (diff) => {
   const status = _.get(diff, 'after.player.status');
   if (status !== 'paused') return;
 
-  const { workers, index } = state.audio;
-  workers[index].pause();
+  Song.pause();
 };
 
 const onChangeSong = (diff, state) => {
   const songI = _.get(diff, 'after.playlist.index');
-
-  if (state.audio.index < 0) return;
   if (typeof songI !== 'number') return;
 
-  const { workers, index } = state.audio;
   const { currentSong } = state.playlist;
   const { status } = state.player;
 
-  workers[index].src = currentSong.url;
-  workers[index].load();
-  if (status === 'playing') workers[index].play();
+  Song.pause();
+  Song.src = currentSong.url;
+  Song.load();
+  if (status === 'playing') Song.play();
 };
+
+
+const onSeekSong = (diff) => {
+  const seekTo = _.get(diff, 'after.audio.seekTo');
+  if (!seekTo || seekTo < 0) return;
+
+  Song.currentTime = seekTo;
+};
+
 
 export default (dispatch, diff, newState, prevState) => {
   onPlaySong(diff, newState);
   onPauseSong(diff, newState);
   onChangeSong(diff, newState);
+  onSeekSong(diff);
 };
