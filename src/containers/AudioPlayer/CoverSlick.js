@@ -14,6 +14,7 @@ const settings = {
   centerPadding: '30px',
   slidesToShow: 1,
   focusOnSelect: true,
+  touchThreshold: 10,
 };
 
 class CoverSlick extends Component {
