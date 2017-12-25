@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import momentDurationFormatSetup from 'moment-duration-format';
@@ -23,11 +24,12 @@ class TimeControls extends Component {
     if (updateTimeInput) this.timeRange.value = currentTime;
   }
 
-  handleSeek = (e) => {
+  startSeek = () => {
     this.setState({ updateTimeInput: false });
+  }
 
+  endSeek = (e) => {
     const sec = parseInt(e.target.value, 10);
-
     this.props.seekAudio(sec);
     this.setState({ updateTimeInput: true });
   }
@@ -47,7 +49,10 @@ class TimeControls extends Component {
             min="0"
             max={endTime}
             defaultValue={currentTime}
-            onInput={this.handleSeek}
+            onMouseDown={this.startSeek}
+            onMouseUp={this.endSeek}
+            onTouchStart={this.startSeek}
+            onTouchEnd={this.endSeek}
           />
         </div>
         <div className="end">{ end }</div>
@@ -55,6 +60,13 @@ class TimeControls extends Component {
     );
   }
 }
+
+
+TimeControls.propTypes = {
+  currentTime: PropTypes.number,
+  endTime: PropTypes.number,
+  seekAudio: PropTypes.func,
+};
 
 
 function mapStateToProps(state) {

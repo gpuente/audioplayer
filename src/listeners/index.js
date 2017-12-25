@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import Song from '../lib/Audio';
 
+import { updateCurrentTimeAudio } from '../actions';
+
 const onPlaySong = (diff) => {
   const status = _.get(diff, 'after.player.status');
   if (status !== 'playing') return;
@@ -29,13 +31,13 @@ const onChangeSong = (diff, state) => {
 };
 
 
-const onSeekSong = (diff) => {
+const onSeekSong = (diff, state, dispatch) => {
   const seekTo = _.get(diff, 'after.audio.seekTo');
   if (!seekTo || seekTo < 0) return;
+  if (state.audio.currentTime === seekTo) return;
 
-  Song.pause();
+  dispatch(updateCurrentTimeAudio(seekTo));
   Song.currentTime = seekTo;
-  Song.play();
 };
 
 
@@ -43,5 +45,5 @@ export default (dispatch, diff, newState, prevState) => {
   onPlaySong(diff, newState);
   onPauseSong(diff, newState);
   onChangeSong(diff, newState);
-  onSeekSong(diff);
+  onSeekSong(diff, newState, dispatch);
 };
