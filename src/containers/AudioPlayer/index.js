@@ -7,6 +7,7 @@ import { fetchPlaylist } from '../../actions';
 
 import Navbar from './Navbar';
 import CoverFlow from './CoverFlow';
+import CoverSlick from './CoverSlick';
 import SongInfo from './SongInfo';
 import TimeControls from './TimeControls';
 import Controls from './Controls';
@@ -31,7 +32,8 @@ class AudioPlayer extends Component {
         <div className="layer">
           <div className="playerContainer">
             <Navbar />
-            <CoverFlow />
+            {/* <CoverFlow /> */}
+            <CoverSlick />
             <SongInfo />
             <TimeControls />
             <Controls />

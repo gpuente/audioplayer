@@ -25,12 +25,13 @@ i {
   display: flex;
   flex-flow: column nowrap;
   height: 100%;
-  padding: 10px 20px;
+  padding: 0;
 }
 
 .nav {
   display: flex;
   flex-flow: row nowrap;
+  padding: 10px 20px 0;
   margin-bottom: 20px;
 }
 
@@ -67,12 +68,31 @@ i {
 
 .coverflow img {
   width: 90%;
-  max-width: 400px;
+  max-width: 230px;
+}
+
+.coverslick {
+  margin-bottom: 10px;
+}
+
+.coverslick img {
+  width: 100%;
+  padding: 0 5px;
+}
+
+.slick-slide {
+  transform: scale(0.92);
+  transition: all 0.3s ease;
+}
+
+.slick-active {
+  transform: scale(1);
 }
 
 .songInfo {
   display: flex;
   flex-flow: row nowrap;
+  padding: 0 20px;
   margin-bottom: 10px;
 }
 
@@ -103,6 +123,7 @@ i {
 .timeControls {
   display: flex;
   flex-flow: row nowrap;
+  padding: 0 20px;
   margin-bottom: 15px;
 }
 
@@ -130,6 +151,7 @@ i {
   flex-flow: row nowrap;
   justify-content: center;
   cursor: pointer;
+  padding: 0 20px 10px;
 }
 
 .controls .control {
