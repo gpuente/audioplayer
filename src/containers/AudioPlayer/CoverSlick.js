@@ -15,6 +15,7 @@ const settings = {
   slidesToShow: 1,
   focusOnSelect: true,
   touchThreshold: 10,
+  speed: 200,
 };
 
 class CoverSlick extends Component {
