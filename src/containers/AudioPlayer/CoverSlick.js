@@ -10,12 +10,12 @@ const settings = {
   className: 'center',
   arrows: false,
   centerMode: true,
-  infinite: true,
+  infinite: false,
   centerPadding: '30px',
   slidesToShow: 1,
   focusOnSelect: true,
   touchThreshold: 10,
-  speed: 200,
+  speed: 100,
 };
 
 class CoverSlick extends Component {
