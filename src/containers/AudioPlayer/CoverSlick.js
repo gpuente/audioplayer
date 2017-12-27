@@ -6,22 +6,27 @@ import Slider from 'react-slick';
 
 import { changeSongIndex } from '../../actions';
 
-const settings = {
-  className: 'center',
-  arrows: false,
-  centerMode: true,
-  infinite: false,
-  centerPadding: '30px',
-  slidesToShow: 1,
-  focusOnSelect: true,
-  touchThreshold: 10,
-  speed: 100,
-};
-
 class CoverSlick extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+
+    this.state = {
+      className: 'center',
+      arrows: false,
+      centerMode: true,
+      infinite: false,
+      centerPadding: '30px',
+      slidesToShow: this.calculateSlidesToShow(),
+      focusOnSelect: true,
+      touchThreshold: 50,
+      speed: 100,
+      draggable: true,
+    };
+  }
+  componentDidMount() {
+    window.addEventListener('resize', () => { // eslint-disable-line
+      this.setState({ slidesToShow: this.calculateSlidesToShow() });
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,6 +35,12 @@ class CoverSlick extends Component {
 
   handleChange = (newIndex) => {
     this.props.changeSongIndex(newIndex);
+  }
+
+  calculateSlidesToShow = () => {
+    const { innerWidth } = window; // eslint-disable-line
+
+    return innerWidth > 414 ? 3 : 1;
   }
 
   renderCovers = () => {
@@ -48,7 +59,7 @@ class CoverSlick extends Component {
     return (
       <div className="coverslick">
         <Slider
-          {...settings}
+          {...this.state}
           afterChange={this.handleChange}
           initialSlide={index}
           ref={(ref) => { this.slider = ref; }}
