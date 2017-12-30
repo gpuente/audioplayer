@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
 import { fetchPlaylist } from '../../actions';
+import {
+  requireLandscapeStyle,
+  isMobileDevice,
+  getOrientation,
+} from '../../utils/helpers';
 
 import Navbar from './Navbar';
 import CoverFlow from './CoverFlow';
@@ -12,17 +17,29 @@ import SongInfo from './SongInfo';
 import TimeControls from './TimeControls';
 import Controls from './Controls';
 
+
 class AudioPlayer extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+
+    this.state = {
+      orientation: getOrientation(),
+      isMobile: isMobileDevice(),
+    };
   }
 
   componentDidMount() {
     this.props.fetchPlaylist();
+
+    window.addEventListener('orientationchange', () => { // eslint-disable-line
+      this.setState({ orientation: getOrientation() });
+    });
   }
 
   render() {
+    const { isMobile, orientation } = this.state;
+    const landscapeClass = requireLandscapeStyle(isMobile, orientation) ? 'landscape' : '';
+
     return (
       <div className="backgroud" style={{ background: this.props.color }}>
         <Helmet>
@@ -30,7 +47,7 @@ class AudioPlayer extends Component {
           <title>{`${this.props.songTitle} | ${this.props.artist}`}</title>
         </Helmet>
         <div className="layer">
-          <div className="playerContainer">
+          <div className={`playerContainer ${landscapeClass}`}>
             <Navbar />
             {/* <CoverFlow /> */}
             <CoverSlick />

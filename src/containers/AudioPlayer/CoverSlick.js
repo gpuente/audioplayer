@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import Slider from 'react-slick';
+import { getOrientation, isMobileDevice, requireLandscapeStyle } from '../../utils/helpers';
 
 import { changeSongIndex } from '../../actions';
 
@@ -39,6 +40,11 @@ class CoverSlick extends Component {
 
   calculateSlidesToShow = () => {
     const { innerWidth } = window; // eslint-disable-line
+    const isMobile = isMobileDevice();
+    const orientation = getOrientation();
+    const requireLandscape = requireLandscapeStyle(isMobile, orientation);
+
+    if (requireLandscape) return 1;
 
     return innerWidth > 414 ? 3 : 1;
   }

@@ -300,3 +300,27 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #ccc;
 }
+
+
+@media (min-width: 600px) {
+  .landscape .nav,
+  .landscape .songInfo,
+  .landscape .timeControls,
+  .landscape .controls,
+  .landscape .coverslick {
+    width: 50%;
+  }
+
+  .landscape .coverslick {
+    position: absolute;
+    right: 0;
+    padding: 10px 0;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .landscape .controls .play {
+    margin: 5px 0;
+  }
+
+}
