@@ -7,7 +7,7 @@ const productionConfig = merge([
   parts.output('chunkhash'),
   parts.devServer({ host: '0.0.0.0', port: 8080 }),
   parts.babelLoader(),
-  parts.cssLoader(),
+  parts.extractCSS({ use: 'css-loader' }),
   parts.uglifyJsPlugin(),
   parts.html200(),
 ]);

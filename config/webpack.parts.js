@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
 exports.devServer = ({ host, port } = {}) => ({
@@ -64,3 +65,27 @@ exports.output = (placeholder = 'hash') => ({
     publicPath: '/',
   },
 });
+
+exports.extractCSS = ({ include, exclude, use }) => {
+  const plugin = new ExtractTextPlugin({
+    allChunks: true,
+    filename: 'styles.[chunkhash].css',
+  });
+
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          include,
+          exclude,
+          use: plugin.extract({
+            use,
+            fallback: 'style-loader',
+          }),
+        },
+      ],
+    },
+    plugins: [plugin],
+  };
+};
