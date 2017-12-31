@@ -12,6 +12,9 @@ const developmentConfig = merge([
   }),
   parts.babelLoader(),
   parts.cssLoader(),
+  parts.loadImages({
+    options: { limit: 40000, name: 'img/[name].[hash].[ext]' },
+  }),
 ]);
 
 module.exports = developmentConfig;

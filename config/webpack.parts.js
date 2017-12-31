@@ -60,7 +60,7 @@ exports.html200 = () => ({
 
 exports.output = (placeholder = 'hash') => ({
   output: {
-    path: path.join(__dirname, '../dist'),
+    path: path.join(__dirname, '..', 'dist'),
     filename: `[name].[${placeholder}].js`,
     publicPath: '/',
   },
@@ -94,5 +94,24 @@ exports.autoprefix = () => ({
   loader: 'postcss-loader',
   options: {
     plugins: () => [require('autoprefixer')()],
+  },
+});
+
+exports.loadImages = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        include,
+        exclude,
+        use: [
+          {
+            loader: 'url-loader',
+            options,
+          },
+          'image-webpack-loader',
+        ],
+      },
+    ],
   },
 });
