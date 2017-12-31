@@ -11,6 +11,9 @@ const productionConfig = merge([
   parts.loadImages({
     options: { limit: 15000, name: 'img/[name].[hash].[ext]' },
   }),
+  parts.loadFonts({
+    options: { name: './fonts/[name].[ext]' },
+  }),
   parts.uglifyJsPlugin(),
   parts.html200(),
 ]);

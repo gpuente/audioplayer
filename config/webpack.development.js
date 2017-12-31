@@ -15,6 +15,9 @@ const developmentConfig = merge([
   parts.loadImages({
     options: { limit: 40000, name: 'img/[name].[hash].[ext]' },
   }),
+  parts.loadFonts({
+    options: { name: './fonts/[name].[ext]' },
+  }),
 ]);
 
 module.exports = developmentConfig;

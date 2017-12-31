@@ -2,13 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
+// Import Bootstrap
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Routes from './routes';
-import store from './store';
+// Import React Slick Styles
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-import '../public/styles/styles.css';
+// Import custom styles
+import '../assets/styles/styles.css';
+
+// Import app routes
+import Routes from './routes';
+
+// Import redux store
+import store from './store';
 
 ReactDOM.render(
   <Provider store={store}>
