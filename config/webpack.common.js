@@ -6,9 +6,15 @@ const _ = require('lodash');
 
 const pkg = require('../package.json');
 
-const VENDOR_LIBS = _.transform(pkg.dependencies, (result, value, key) => (
-  result.push(key)
-), []);
+const EXCLUDE_LIBS = [
+  'font-awesome',
+  'animate.css',
+];
+
+const VENDOR_LIBS = _.chain(pkg.dependencies)
+  .keys()
+  .filter(lib => _.indexOf(EXCLUDE_LIBS, lib) < 0)
+  .value();
 
 module.exports = merge([
   {
