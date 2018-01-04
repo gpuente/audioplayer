@@ -1,30 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import App from './components/App';
-import AudioPlayer from './components/AudioPlayer';
+// Import Bootstrap
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import reducers from './reducers';
+// Import React Slick Styles
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-import '../public/styles/styles.css';
+// Import custom styles
+import '../assets/styles/styles.css';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+// Import app routes
+import Routes from './routes';
+
+// Import redux store
+import store from './store';
 
 ReactDOM.render(
-  <Provider
-    store={createStoreWithMiddleware(
-      reducers,
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() //eslint-disable-line
-    )}
-  >
-    <BrowserRouter>
-      <Switch>
-        <Route path="/play" component={AudioPlayer} />
-        <Route path="/" component={App} />
-      </Switch>
-    </BrowserRouter>
+  <Provider store={store}>
+    <Routes />
   </Provider>
   , document.getElementById('app')); //eslint-disable-line
